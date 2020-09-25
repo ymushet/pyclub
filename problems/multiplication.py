@@ -3,10 +3,6 @@ from typing import List
 import doctest
 
 
-def cut_list(numbers: List[int], index: int) -> List[int]:
-    pass
-
-
 def multiplay_list(numbers: List[int]) -> int:
     """
     Returns summ of all elements of a list
@@ -32,15 +28,20 @@ def multiplication(numbers: List[int]) -> List[int]:
     [15, 3, 5]
     >>> multiplication([1, 2, 2, 5, 8])
     [160, 80, 80, 32, 20]
+    >>> multiplication([1, 0, 2, 5, 8])
+    []
     """
     res = []
+    value = multiplay_list(numbers)
     for n in numbers:
-        index = numbers.index(n)
-        res.append(multiplay_list(cut_list(numbers, index)))
-
+        try:
+            res.append(int(value / n))
+        except ZeroDivisionError:
+            return []
     return res
 
 
 if __name__ == "__main__":
-    #doctest.testmod()
-    doctest.run_docstring_examples(multiplay_list, globals())
+    doctest.testmod()
+    #doctest.run_docstring_examples(multiplay_list, globals())
+    #print(multiplication([1, 0, 2, 5, 8]))
