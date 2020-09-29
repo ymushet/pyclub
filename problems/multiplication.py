@@ -40,7 +40,7 @@ def multiplication(numbers: List[int]) -> List[int]:
     if (zero_count == 1):
         n = multiplay_list([x for x in numbers if x != 0])
         return [
-            0 if i != 0 else n 
+            0 if i != 0 else n
             for i in numbers
         ]
 
@@ -53,4 +53,3 @@ def multiplication(numbers: List[int]) -> List[int]:
 
 if __name__ == "__main__":
     doctest.testmod()
-
