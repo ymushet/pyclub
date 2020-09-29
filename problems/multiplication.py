@@ -10,10 +10,10 @@ def multiplay_list(numbers: List[int]) -> int:
     >>> multiplay_list([1, 5, 3])
     15
     >>> multiplay_list([])
-    0
+    1
     """
     if not numbers:
-        return 0
+        return 1
 
     return reduce((lambda x, y: x * y), numbers)
 
@@ -29,19 +29,28 @@ def multiplication(numbers: List[int]) -> List[int]:
     >>> multiplication([1, 2, 2, 5, 8])
     [160, 80, 80, 32, 20]
     >>> multiplication([1, 0, 2, 5, 8])
-    []
+    [0, 80, 0, 0, 0]
+    >>> multiplication([1, 0, 2, 0, 8])
+    [0, 0, 0, 0, 0]
     """
-    res = []
+    zero_count = numbers.count(0)
+    if (zero_count >= 2):
+        return [0] * len(numbers)
+
+    if (zero_count == 1):
+        n = multiplay_list([x for x in numbers if x != 0])
+        return [
+            0 if i != 0 else n 
+            for i in numbers
+        ]
+
     value = multiplay_list(numbers)
+    res = []
     for n in numbers:
-        try:
-            res.append(int(value / n))
-        except ZeroDivisionError:
-            return []
+        res.append(int(value / n))
     return res
 
 
 if __name__ == "__main__":
     doctest.testmod()
-    #doctest.run_docstring_examples(multiplay_list, globals())
-    #print(multiplication([1, 0, 2, 5, 8]))
+
