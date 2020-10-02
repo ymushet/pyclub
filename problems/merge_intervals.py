@@ -15,4 +15,8 @@ def merge(intervals: List[List[int]]) -> List[List[int]]:
 
 
 if __name__ == "__main__":
+    """
+    merge([[5, 6], [3, 4], [1, 2]])
+    >>> [[1, 7], [3, 4], [5, 6]]
+    """
     doctest.testmod()
