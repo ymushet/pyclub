@@ -1,4 +1,8 @@
-def merge(intervals):
+from typing import List
+import doctest
+
+
+def merge(intervals: List[List[int]]) -> List[List[int]]:
     """
     See https://leetcode.com/problems/merge-intervals/
 
@@ -7,3 +11,8 @@ def merge(intervals):
     >>> merge([[1, 4], [4, 5]])
     [[1, 5]]
     """
+    intervals.sort(key=lambda a: a[0])
+
+
+if __name__ == "__main__":
+    doctest.testmod()
