@@ -30,6 +30,8 @@ def merge(intervals: List[List[int]]) -> List[List[int]]:
     [[1, 6], [8, 10], [15, 18]]
     >>> merge([[1, 4], [4, 5]])
     [[1, 5]]
+    >>> merge([[1,4],[5,6]])
+    [[1,4],[5,6]]
     """
     if len(intervals) < 2:
         return intervals
