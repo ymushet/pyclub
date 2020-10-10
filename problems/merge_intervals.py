@@ -14,6 +14,8 @@ def is_overlap(a : int, b : int, c : int, d : int) -> bool:
     True
     >>> is_overlap(1, 2, 3, 4)
     False
+    >>> is_overlap(1, 3, 2, 6)
+    True
     """
     if b == c:
         return True
@@ -35,8 +37,14 @@ def merge(intervals: List[List[int]]) -> List[List[int]]:
     [[1, 5]]
     """
     intervals.sort(key=lambda a: a[0])
-    # TODO: Merge lists now
-
+    res = []
+    for i in range(1, len(intervals)):
+        if is_overlap(*intervals[i - 1], *intervals[i]):
+            print("here")
+            res.append([intervals[i-1][0], intervals[i][1]])
+    
+    return res
 
 if __name__ == "__main__":
-    doctest.run_docstring_examples(is_overlap, globals())
+    doctest.testmod()
+
