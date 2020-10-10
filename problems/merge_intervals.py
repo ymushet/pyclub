@@ -2,10 +2,10 @@ from typing import List
 import doctest
 
 
-def is_overlap(a : int, b : int, c : int, d : int) -> bool:
+def is_overlap(a: int, b: int, c: int, d: int) -> bool:
     """"
     Determine if [a, b] and [c, d] overlaps
-    
+
     >>> is_overlap(1, 2, 2, 3)
     True
     >>> is_overlap(1, 1, 1, 1)
@@ -31,7 +31,7 @@ def merge(intervals: List[List[int]]) -> List[List[int]]:
     >>> merge([[1, 4], [4, 5]])
     [[1, 5]]
     >>> merge([[1,4],[5,6]])
-    [[1,4],[5,6]]
+    [[1, 4], [5, 6]]
     """
     if len(intervals) < 2:
         return intervals
@@ -42,8 +42,9 @@ def merge(intervals: List[List[int]]) -> List[List[int]]:
             res.append([intervals[i-1][0], intervals[i][1]])
         else:
             res.append(intervals[i])
-    
+
     return res
+
 
 if __name__ == "__main__":
     #doctest.run_docstring_examples(is_overlap, globals())
