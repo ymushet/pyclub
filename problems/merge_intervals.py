@@ -37,11 +37,11 @@ def merge(intervals: List[List[int]]) -> List[List[int]]:
         return intervals
     intervals.sort(key=lambda a: a[0])
     res = []
-    for i in range(1, len(intervals)):
-        if is_overlap(*intervals[i - 1], *intervals[i]):
-            res.append([min(*intervals[i-1], *intervals[i]), max(*intervals[i-1], *intervals[i])])
+    for first, second in zip(intervals, intervals[1:]):
+        if is_overlap(*first, *second):
+            res.append([min(*first, *second), max(*first, *second)])
         else:
-            res.append(intervals[i])
+            res.append(first)
 
     return res
 
