@@ -1,4 +1,4 @@
-from typing import List
+from typing import Callable, Iterable, List
 import doctest
 
 
@@ -22,7 +22,7 @@ def is_overlap(a: int, b: int, c: int, d: int) -> bool:
     return False
 
 
-def count_sort(numbers):
+def count_sort(iterable : Iterable, key : Callable = None):
     """
     >>> count_sort([])
     []
@@ -35,11 +35,15 @@ def count_sort(numbers):
     >>> count_sort([4, 3, -3, 3, 0])
     [-3, 0, 3, 3, 4, 5]
     """
-    if not numbers:
+    if not iterable:
         return []
+    if key is None:
+        key = lambda a: a
 
+    numbers = [key(x) for x in iterable] # O (n)
     left = min(numbers)
-    size = max(numbers) - left + 1  # O(n)
+    right = max(numbers)
+    size = right - left + 1  # O(n)
     counters = [0] * size
     for n in numbers:  # O(n)
         counters[n - left] += 1
