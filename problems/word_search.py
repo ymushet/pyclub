@@ -42,7 +42,7 @@ def neighbors(board, word, i, j):
         return True
 
     w = word[1]
-    board[i][j] = '#'
+    tmp, board[i][j] = board[i][j], '#'
     x = len(board) - 1 # height
     y = len(board[0]) - 1 # weight
 
@@ -66,11 +66,8 @@ def neighbors(board, word, i, j):
         res = neighbors(board, word[1:], i, j + 1)
         if res:
             return True
-
+    board[i][j] = tmp
     return False
 
 if __name__ == "__main__":
     doctest.testmod()
-    # main([["C","A","A"],
-    #       ["A","A","A"],
-    #       ["B","C","D"]],"AAB")
